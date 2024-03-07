@@ -38,7 +38,38 @@
 
 // createUser({name: "", email: "", isActive: true})
 
+type User = {
+  //MongoDB - devs cant change this _id (using readonly):
+  readonly _id: string;
+  name: string;
+  email: string;
+  //check if a user is active over some days:
+  isActive: boolean;
+  creditcardDetails?: number;
+};
 
+let myUser: User = {
+  _id: "1234",
+  name: "c",
+  email: "c@c.com",
+  isActive: false,
+};
 
+//specific example for now, would make more sense if these types had much more properties in them:
+type cardNumber = {
+    cardNumber: string;
+}
 
-export {}
+type cardDate = {
+    dardDate: string;
+}
+
+//combine all of the separate types (cardNumber, cardDate, and now cardDetails):
+type cardDetails = cardNumber & cardDate & {
+    cvv: number;
+}
+
+myUser.email = "c@gmail.com";
+// myUser._id = "ada";
+
+export {};
