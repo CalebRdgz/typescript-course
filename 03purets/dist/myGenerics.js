@@ -41,3 +41,23 @@ const getMoreSearchProducts = (products) => {
     const myIndex = 4;
     return products[myIndex];
 };
+//Generic taking in two inputs, with return type of object:
+//inputs to this function are (T, U)
+function anotherFunction(valOne, valTwo) {
+    return {
+        valOne,
+        valTwo,
+    };
+}
+//this class will handle some of these cases:
+//<T> = Generic class (can take any type of values up here^)
+class Sellable {
+    constructor() {
+        //cart is an array of items of type T:
+        this.cart = [];
+    }
+    addToCart(products) {
+        //add these products^ (type T):
+        this.cart.push(products);
+    }
+}

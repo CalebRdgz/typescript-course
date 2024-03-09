@@ -49,8 +49,51 @@ identityFour<Bottle>({ brand: "caleb", type: 3 });
 //convert this exact function^ into an arrow function:
 //<T> is an indecation that this will be a generic
 // <T,> mentions that this is a syntax for generics, not for JSX syntax
-const getMoreSearchProducts = <T,>(products: T[]): T => {
-    //do some database operations
-    const myIndex = 4
-    return products[myIndex]
+const getMoreSearchProducts = <T>(products: T[]): T => {
+  //do some database operations
+  const myIndex = 4;
+  return products[myIndex];
+};
+
+interface Database {
+    connection: string;
+    username: string;
+    password: string;
+}
+
+//Generic taking in two inputs, with return type of object:
+//inputs to this function are (T, U)
+function anotherFunction<T, U extends Database>(valOne: T, valTwo: U): object {
+  return {
+    valOne,
+    valTwo,
+  };
+}
+
+//Generic values exist to take in these values into the anotherFunction():
+//this is why Generics exist
+// anotherFunction(3, {})
+
+//selling courses and quizzes (create methods that work for both of them):
+interface Quiz {
+    name: string;
+    type: string; //type of quiz
+}
+
+interface Course {
+    name: string;
+    author: string;
+    subject: string;
+}
+
+//this class will handle some of these cases:
+//<T> = Generic class (can take any type of values up here^)
+class Sellable<T> {
+    //cart is an array of items of type T:
+    public cart: T[] = []
+
+    addToCart(products: T) {
+        //add these products^ (type T):
+        this.cart.push(products)
+    }
 }
